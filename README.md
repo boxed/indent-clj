@@ -6,6 +6,8 @@ the rewriting should be fairly transparent so you can actually work in the inden
 
 The parser is super simple so there are going to be some cases that it can't handle, like comments on the line after where the end paren is supposed to go.
 
+The plugin supports rewriting .clj, .cljs and .cljx.
+
 ## Example:
 
 ```clojure
