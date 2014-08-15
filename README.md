@@ -1,8 +1,6 @@
 # indent-clj
 
-This is an experiment into Clojure with inferred paren. Files with the extension "indent-clj" are
-rewritten into normal clojure by adding the inferred paren. Since this is done as a leiningen plugin
-the rewriting should be fairly transparent so you can actually work in the indent-clj files only.
+This is an experiment into Clojure with inferred paren. Files with the extension "indent-clj", "indent-cljs" and "indent-cljx" are rewritten into normal clojure by adding the inferred paren. Since this is done as a leiningen plugin the rewriting should be fairly transparent so you can actually work in the indent-clj files only. The goal isn't to replace paren, just write less of them, more specifically to stop writing those that end up at the end of forms as "))))))))))" :P
 
 The parser is super simple so there are going to be some cases that it can't handle, like comments on the line after where the end paren is supposed to go.
 
