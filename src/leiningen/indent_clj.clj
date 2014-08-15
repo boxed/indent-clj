@@ -1,10 +1,14 @@
 (ns leiningen.indent-clj)
 
-(defn indent-clj
-  [project & args]
-  (println "Hi!"))
+(declare infer-paren)
 
-; TODO: handle comment lines: insert paren before the comment
+(defn indent-clj [project & args]
+  (doseq [f (file-seq (clojure.java.io/file "src"))]
+    (let [path (.getAbsolutePath f)]
+      (if (.endsWith path ".indent-clj")
+        (spit (clojure.string/replace path ".indent-clj" ".clj") (infer-paren (slurp path)))))))
+
+; TODO: handle comment lines: insert paren before the comment. This might be nasty and require a full parser to avoid screwing up strings etc.
 
 (def indent-size 2)
 (def indent-str "  ")
@@ -80,7 +84,7 @@
   (for-v [line-data line-datas]
     (assoc line-data :line (str (duplicate-string indent-str (:indent line-data)) (:line line-data)))))
 
-(defn foo [input]
+(defn infer-paren [input]
   (let [lines (clojure.string/split input #"\n")]
     (->> (into [] (concat (map line-data lines) [empty-line-data]))
          set-ignore-flag
