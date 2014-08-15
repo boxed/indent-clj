@@ -39,7 +39,11 @@ is expanded into:
 
 ## Usage
 
-Put `[indent-clojure "1.0.0"]` into the `:plugins` vector of your project.clj.
+Put:
+
+[![Clojars Project](http://clojars.org/indent-clj/latest-version.svg)](http://clojars.org/indent-clj) 
+
+into the `:plugins` vector of your project.clj, and then leiningen will support indent-clj files.
 
 ## License
 
