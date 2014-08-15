@@ -1,12 +1,15 @@
-(ns leiningen.indent-clj)
+(ns indent-clj.plugin)
 
 (declare infer-paren)
 
-(defn indent-clj [project & args]
+(defn middleware [project]
   (doseq [f (file-seq (clojure.java.io/file "src"))]
     (let [path (.getAbsolutePath f)]
-      (if (.endsWith path ".indent-clj")
-        (spit (clojure.string/replace path ".indent-clj" ".clj") (infer-paren (slurp path)))))))
+      (if (re-matches #".*\.indent-clj[xs]?" path)
+        (do
+          (println "Rewriting " path)
+          (spit (clojure.string/replace path ".indent-clj" ".clj") (infer-paren (slurp path)))))))
+  project)
 
 ; TODO: handle comment lines: insert paren before the comment. This might be nasty and require a full parser to avoid screwing up strings etc.
 
@@ -97,4 +100,3 @@
          (clojure.string/join "\n")
          clojure.string/trim
         )))
-
