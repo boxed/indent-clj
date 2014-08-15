@@ -52,8 +52,6 @@
 
 (defn fix-eligible-start [line-datas]
   (for-x-and-next-x line-datas empty-line-data
-                    (if (:eligible-start x)
-                      (prn x next-x))
                     (assoc x :eligible-start (and (> (:indent next-x) (:indent x)) (:eligible-start x)))))
 
 (defn add-start-paren [input]
@@ -71,7 +69,9 @@
 
 (defn add-end-paren [line-datas]
   (for-x-and-next-x line-datas empty-line-data
-                    (if (< (:indent next-x) (:indent x))
+                    (if (and
+                         (or (= "" (:line next-x)) (not (:ignore x)))
+                         (< (:indent next-x) (:indent x)))
                       (assoc x :line (str (:line x)
                                           (duplicate-string ")" (- (:indent x) (:indent next-x)))))
                       x)))
