@@ -1,4 +1,4 @@
-(defproject indent-clj "1.0.0"
+(defproject indent-clj "1.0.1"
   :description "Inferred parenthesis for clojure"
   :url "https://github.com/boxed/indent-clj"
   :license {:name "Eclipse Public License"
