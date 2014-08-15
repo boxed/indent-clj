@@ -1,6 +1,6 @@
 (ns indent-clj.test-indent
   [:use midje.sweet]
-  [:require [leiningen.indent-clj :refer :all]])
+  [:require [indent-clj.plugin :refer :all]])
 
 ;; The following line is useful for debugging
 ; (spit "test/test-output.clj" (infer-paren (slurp "test/test.indent-clj")))
